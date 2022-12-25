@@ -6,7 +6,7 @@ export default function Service({ data: { name, info, icon } }) {
   const Icon = icon;
   const [modal, setModal] = useState(false);
   return (
-    <div className="p-5 bg-white rounded-lg shadow-lg dark:text-gray-300">
+    <div className="p-5 my-10 bg-white rounded-lg shadow-lg dark:text-gray-300 dark:bg-[#1b232e] dark:shadow-2xl-[#101621]">
       <div className="flex justify-center items-center">
         <Icon className="text-8xl text-gray-700" />
       </div>
@@ -15,7 +15,7 @@ export default function Service({ data: { name, info, icon } }) {
 
       <button
         onClick={() => setModal(true)}
-        className="text-gray-800 my-5 border border-gray-500 p-2 rounded bg-gray-200"
+        className=" my-5 border border-gray-500 p-2 rounded"
       >
         View More <BsArrowRight className="inline text-xl mx-2" />{" "}
       </button>

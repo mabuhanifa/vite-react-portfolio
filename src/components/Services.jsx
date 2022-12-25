@@ -24,14 +24,15 @@ export default function Services() {
   ];
 
   return (
-    <>
-      <div className="grid sm:grid-cols-3 place-content-center gap-5 dark:text-gray-300">
+    <div className=" dark:text-gray-300 p-5">
+    <h1 className="my-10 text-2xl font-bold text-center">Services</h1>
+      <div className="grid sm:grid-cols-3 place-content-center gap-5">
         {data.map((data, i) => (
           <Service data={data} key={i} />
         ))}
         
       </div>
       
-    </>
+    </div>
   );
 }

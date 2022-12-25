@@ -28,7 +28,7 @@ function App() {
   }, [theme]);
 
   return (
-    <div className="text-gray-700 bg-white dark:bg-[#101621] dark:text-gray-100 2xl:px-40 xl:px-20 py-10 ">
+    <div className="text-gray-700 bg-[#f9f9f8] dark:bg-[#101621] dark:text-gray-100 2xl:px-40 xl:px-20 py-10 ">
       <Nav handleSwitch={handleSwitch} />
       <Main />
       <About />
