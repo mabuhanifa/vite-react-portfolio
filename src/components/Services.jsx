@@ -9,6 +9,10 @@ export default function Services() {
     {
       name: "Static Website",
       info: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos exercitationem accusamus, at placeat cupiditate sint labore voluptatum iusto, quia, voluptatibus fugit doloremque quisquam ducimus explicabo!",
+      list:[
+        "Static Website can be built with vanilla JavaScript,HTML and CSS",
+        
+      ],
       icon: MdWeb,
     },
     {
