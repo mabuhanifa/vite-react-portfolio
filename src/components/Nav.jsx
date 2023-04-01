@@ -1,77 +1,64 @@
-import { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import React, { useEffect, useState } from "react";
 import { BsSun } from "react-icons/bs";
 import { FaMoon } from "react-icons/fa";
 
-export default function Nav({ handleSwitch }) {
-  const [night, setNight] = useState(false);
-  const [menu, setMenu] = useState(true);
-  const switchTheme = () => {
-    setNight(!night);
-    handleSwitch();
+export default function Nav() {
+  const [theme, setTheme] = useState("light");
+
+  // if local storage is empty save theme as light
+  useEffect(() => {
+    if (localStorage.getItem("theme") === null) {
+      localStorage.setItem("theme", "light");
+    }
+  }, []);
+
+  useEffect(() => {
+    // select html elem
+    const html = document.querySelector("html");
+    if (localStorage.getItem("theme") === "dark") {
+      html.classList.add("dark");
+      setTheme("dark");
+    } else {
+      html.classList.remove("dark");
+      setTheme("light");
+    }
+  }, [theme]);
+
+  // handle switch theme
+  const handleTheme = () => {
+    if (localStorage.getItem("theme") === "light") {
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      setTheme("light");
+      localStorage.setItem("theme", "light");
+    }
   };
+
   return (
-    <div className="m-10 sm:m-0 dark:text-gray-300">
-      <nav className="flex flex-col sm:flex-row justify-between font-semibold">
-        <div className="mb-10">
-          <div className="flex justify-between items-center">
-            <a href="/">Abu Hanifa</a>
-            <div className="sm:hidden" onClick={() => setMenu(!menu)}>
-              {menu ? (
-                <AiOutlineClose className="text-xl" />
-              ) : (
-                <AiOutlineMenu className="text-xl" />
-              )}
-            </div>
-          </div>
-        </div>
+    <nav className="flex justify-between mb-20">
+      <div className="flex gap-x-10 justify-center items-center">Logo</div>
+      <div className="flex gap-x-10 justify-center items-center">
+        <a href="/">Home</a>
+        <a href="/">Course</a>
+        <a href="/">Price</a>
+        <a href="/">About</a>
         <div
-          className={
-            "hidden sm:flex flex-col sm:flex-row justify-between items-center gap-10"
-          }
+          className="flex justify-center items-center cursor-pointer cursor:pointer"
+          onClick={handleTheme}
         >
-          <a href="/">Home</a>
-          <a href="/">About</a>
-          <a href="/">Skills</a>
-          <a href="/">Service</a>
-          <a href="/">Portfolio</a>
-          <a href="/">Contact</a>
-          <div
-            className="flex justify-center items-center cursor-pointer "
-            onClick={switchTheme}
-          >
-            {night ? (
-              <BsSun className="inline text-2xl" />
-            ) : (
-              <FaMoon className="inline text-2xl" />
-            )}
-          </div>
+          {theme === "dark" ? (
+            <BsSun className="inline text-xl" />
+          ) : (
+            <FaMoon className="inline text-xl" />
+          )}
         </div>
-        <div
-          className={
-            menu
-              ? "sm:hidden flex flex-col sm:flex-row justify-between items-center gap-10"
-              : "hidden"
-          }
-        >
-          <a href="/">Home</a>
-          <a href="/">About</a>
-          <a href="/">Skills</a>
-          <a href="/">Service</a>
-          <a href="/">Portfolio</a>
-          <a href="/">Contact</a>
-          <div
-            className="flex justify-center items-center cursor-pointer "
-            onClick={() => setNight(!night)}
-          >
-            {night ? (
-              <FaMoon className="inline text-2xl" />
-            ) : (
-              <BsSun className="inline text-2xl" />
-            )}
-          </div>
-        </div>
-      </nav>
-    </div>
+      </div>
+      <div className="flex gap-x-5">
+        <button className="px-5 py-2 bg-blue-700 text-white font-bold rounded-full">
+          SIGN UP
+        </button>
+      </div>
+    </nav>
   );
 }
